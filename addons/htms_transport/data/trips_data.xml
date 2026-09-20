@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ======================= TRIPS (relative to install date) ======================= -->
+        <record id="trip_ma_bag_1" model="htms.trip">
+            <field name="route_id" ref="route_manila_baguio"/>
+            <field name="product_id" ref="product_trip_ma_bag"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=8, minute=30) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=14, minute=30) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES Express A</field>
+            <field name="total_seats">40</field>
+            <field name="seat_layout">2+2</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_ma_bag_2" model="htms.trip">
+            <field name="route_id" ref="route_manila_baguio"/>
+            <field name="product_id" ref="product_trip_ma_bag"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=10, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=16, minute=0) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES Express B</field>
+            <field name="total_seats">40</field>
+            <field name="seat_layout">2+2</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_ma_bag_3" model="htms.trip">
+            <field name="route_id" ref="route_manila_baguio"/>
+            <field name="product_id" ref="product_trip_ma_bag"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=19, minute=0) + timedelta(days=2)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=1, minute=0) + timedelta(days=3)"/>
+            <field name="bus_name">HERMES Express Night</field>
+            <field name="total_seats">40</field>
+            <field name="seat_layout">2+2</field>
+            <field name="state">scheduled</field>
+        </record>
+
+        <record id="trip_ma_clark_1" model="htms.trip">
+            <field name="route_id" ref="route_manila_clark"/>
+            <field name="product_id" ref="product_trip_ma_clark"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=7, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=9, minute=30) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES North 01</field>
+            <field name="total_seats">40</field>
+            <field name="seat_layout">2+2</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_ma_clark_2" model="htms.trip">
+            <field name="route_id" ref="route_manila_clark"/>
+            <field name="product_id" ref="product_trip_ma_clark"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=13, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=15, minute=30) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES North 02</field>
+            <field name="total_seats">40</field>
+            <field name="seat_layout">2+2</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_ma_clark_3" model="htms.trip">
+            <field name="route_id" ref="route_manila_clark"/>
+            <field name="product_id" ref="product_trip_ma_clark"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=18, minute=30) + timedelta(days=2)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=21, minute=0) + timedelta(days=2)"/>
+            <field name="bus_name">HERMES North 03</field>
+            <field name="total_seats">40</field>
+            <field name="seat_layout">2+2</field>
+            <field name="state">scheduled</field>
+        </record>
+
+        <record id="trip_ma_cubao_1" model="htms.trip">
+            <field name="route_id" ref="route_manila_cubao"/>
+            <field name="product_id" ref="product_trip_ma_cubao"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=6, minute=30) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=7, minute=15) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES City 01</field>
+            <field name="total_seats">20</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_ma_cubao_2" model="htms.trip">
+            <field name="route_id" ref="route_manila_cubao"/>
+            <field name="product_id" ref="product_trip_ma_cubao"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=8, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=8, minute=45) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES City 02</field>
+            <field name="total_seats">20</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_ma_cubao_3" model="htms.trip">
+            <field name="route_id" ref="route_manila_cubao"/>
+            <field name="product_id" ref="product_trip_ma_cubao"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=12, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=12, minute=45) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES City 03</field>
+            <field name="total_seats">20</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_ma_cubao_4" model="htms.trip">
+            <field name="route_id" ref="route_manila_cubao"/>
+            <field name="product_id" ref="product_trip_ma_cubao"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=17, minute=30) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=18, minute=15) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES City 04</field>
+            <field name="total_seats">20</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_ma_cubao_5" model="htms.trip">
+            <field name="route_id" ref="route_manila_cubao"/>
+            <field name="product_id" ref="product_trip_ma_cubao"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=20, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=20, minute=45) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES City 05</field>
+            <field name="total_seats">20</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+
+        <record id="trip_cebu_moal_1" model="htms.trip">
+            <field name="route_id" ref="route_cebu_moalboal"/>
+            <field name="product_id" ref="product_trip_cebu_moal"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=8, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=11, minute=0) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES Visayas 01</field>
+            <field name="total_seats">30</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_cebu_moal_2" model="htms.trip">
+            <field name="route_id" ref="route_cebu_moalboal"/>
+            <field name="product_id" ref="product_trip_cebu_moal"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=14, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=17, minute=0) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES Visayas 02</field>
+            <field name="total_seats">30</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+
+        <record id="trip_mak_bgc_1" model="htms.trip">
+            <field name="route_id" ref="route_makati_bgc"/>
+            <field name="product_id" ref="product_trip_mak_bgc"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=7, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=7, minute=30) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES City Shuttle 01</field>
+            <field name="total_seats">20</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_mak_bgc_2" model="htms.trip">
+            <field name="route_id" ref="route_makati_bgc"/>
+            <field name="product_id" ref="product_trip_mak_bgc"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=9, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=9, minute=30) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES City Shuttle 02</field>
+            <field name="total_seats">20</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+        <record id="trip_mak_bgc_3" model="htms.trip">
+            <field name="route_id" ref="route_makati_bgc"/>
+            <field name="product_id" ref="product_trip_mak_bgc"/>
+            <field name="departure_datetime" eval="datetime.today().replace(hour=5, minute=0) + timedelta(days=1)"/>
+            <field name="arrival_datetime" eval="datetime.today().replace(hour=5, minute=30) + timedelta(days=1)"/>
+            <field name="bus_name">HERMES City Shuttle 03</field>
+            <field name="total_seats">20</field>
+            <field name="seat_layout">2+1</field>
+            <field name="state">scheduled</field>
+        </record>
+    </data>
+</odoo>

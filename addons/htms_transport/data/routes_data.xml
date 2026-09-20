@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ======================= PRODUCT CATEGORIES ======================= -->
+        <record id="product_category_htms" model="product.category">
+            <field name="name">HERMES Transport</field>
+        </record>
+        <record id="product_category_htms_fares" model="product.category">
+            <field name="name">Bus Fares</field>
+            <field name="parent_id" ref="product_category_htms"/>
+        </record>
+        <record id="product_category_htms_topup" model="product.category">
+            <field name="name">eWallet Top-Ups</field>
+            <field name="parent_id" ref="product_category_htms"/>
+        </record>
+
+        <!-- ======================= E-WALLET TOP-UP PRODUCTS ======================= -->
+        <record id="ewallet_topup_100" model="product.template">
+            <field name="name">HERMES eWallet Top-Up ₱100</field>
+            <field name="categ_id" ref="product_category_htms_topup"/>
+            <field name="type">service</field>
+            <field name="service_tracking">no</field>
+            <field name="sale_ok">True</field>
+            <field name="list_price">100.0</field>
+            <field name="invoice_policy">order</field>
+            <field name="website_published">True</field>
+        </record>
+        <record id="ewallet_topup_500" model="product.template">
+            <field name="name">HERMES eWallet Top-Up ₱500</field>
+            <field name="categ_id" ref="product_category_htms_topup"/>
+            <field name="type">service</field>
+            <field name="service_tracking">no</field>
+            <field name="sale_ok">True</field>
+            <field name="list_price">500.0</field>
+            <field name="invoice_policy">order</field>
+            <field name="website_published">True</field>
+        </record>
+        <record id="ewallet_topup_1000" model="product.template">
+            <field name="name">HERMES eWallet Top-Up ₱1,000</field>
+            <field name="categ_id" ref="product_category_htms_topup"/>
+            <field name="type">service</field>
+            <field name="service_tracking">no</field>
+            <field name="sale_ok">True</field>
+            <field name="list_price">1000.0</field>
+            <field name="invoice_policy">order</field>
+            <field name="website_published">True</field>
+        </record>
+
+        <!-- ======================= ROUTES ======================= -->
+        <record id="route_manila_baguio" model="htms.route">
+            <field name="name">Manila → Baguio</field>
+            <field name="origin">Manila</field>
+            <field name="destination">Baguio</field>
+            <field name="distance_km">250.0</field>
+            <field name="base_price">520.0</field>
+            <field name="duration_hours">6.0</field>
+        </record>
+        <record id="route_manila_clark" model="htms.route">
+            <field name="name">Manila → Clark</field>
+            <field name="origin">Manila</field>
+            <field name="destination">Clark</field>
+            <field name="distance_km">90.0</field>
+            <field name="base_price">350.0</field>
+            <field name="duration_hours">2.5</field>
+        </record>
+        <record id="route_manila_cubao" model="htms.route">
+            <field name="name">Manila → Cubao</field>
+            <field name="origin">Manila</field>
+            <field name="destination">Cubao</field>
+            <field name="distance_km">8.0</field>
+            <field name="base_price">25.0</field>
+            <field name="duration_hours">0.75</field>
+        </record>
+        <record id="route_cebu_moalboal" model="htms.route">
+            <field name="name">Cebu City → Moalboal</field>
+            <field name="origin">Cebu City</field>
+            <field name="destination">Moalboal</field>
+            <field name="distance_km">90.0</field>
+            <field name="base_price">180.0</field>
+            <field name="duration_hours">3.0</field>
+        </record>
+        <record id="route_makati_bgc" model="htms.route">
+            <field name="name">Makati → BGC</field>
+            <field name="origin">Makati</field>
+            <field name="destination">BGC</field>
+            <field name="distance_km">6.0</field>
+            <field name="base_price">22.0</field>
+            <field name="duration_hours">0.5</field>
+        </record>
+
+        <!-- ======================= TRIP PRODUCTS ======================= -->
+        <record id="product_trip_ma_bag" model="product.template">
+            <field name="name">Manila → Baguio Bus Ticket</field>
+            <field name="categ_id" ref="product_category_htms_fares"/>
+            <field name="type">service</field>
+            <field name="service_tracking">no</field>
+            <field name="sale_ok">True</field>
+            <field name="list_price">520.0</field>
+            <field name="invoice_policy">order</field>
+            <field name="website_published">True</field>
+        </record>
+        <record id="product_trip_ma_clark" model="product.template">
+            <field name="name">Manila → Clark Bus Ticket</field>
+            <field name="categ_id" ref="product_category_htms_fares"/>
+            <field name="type">service</field>
+            <field name="service_tracking">no</field>
+            <field name="sale_ok">True</field>
+            <field name="list_price">350.0</field>
+            <field name="invoice_policy">order</field>
+            <field name="website_published">True</field>
+        </record>
+        <record id="product_trip_ma_cubao" model="product.template">
+            <field name="name">Manila → Cubao City Bus Fare</field>
+            <field name="categ_id" ref="product_category_htms_fares"/>
+            <field name="type">service</field>
+            <field name="service_tracking">no</field>
+            <field name="sale_ok">True</field>
+            <field name="list_price">25.0</field>
+            <field name="invoice_policy">order</field>
+            <field name="website_published">True</field>
+        </record>
+        <record id="product_trip_cebu_moal" model="product.template">
+            <field name="name">Cebu City → Moalboal Bus Ticket</field>
+            <field name="categ_id" ref="product_category_htms_fares"/>
+            <field name="type">service</field>
+            <field name="service_tracking">no</field>
+            <field name="sale_ok">True</field>
+            <field name="list_price">180.0</field>
+            <field name="invoice_policy">order</field>
+            <field name="website_published">True</field>
+        </record>
+        <record id="product_trip_mak_bgc" model="product.template">
+            <field name="name">Makati → BGC City Bus Fare</field>
+            <field name="categ_id" ref="product_category_htms_fares"/>
+            <field name="type">service</field>
+            <field name="service_tracking">no</field>
+            <field name="sale_ok">True</field>
+            <field name="list_price">22.0</field>
+            <field name="invoice_policy">order</field>
+            <field name="website_published">True</field>
+        </record>
+    </data>
+</odoo>

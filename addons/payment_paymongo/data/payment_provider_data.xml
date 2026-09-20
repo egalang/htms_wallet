@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <record id="payment_provider_paymongo" model="payment.provider">
+        <field name="name">PayMongo</field>
+        <field name="code">paymongo</field>
+        <field name="state">test</field>
+        <!-- <field name="company_id" ref="base.main_company"/> -->
+
+        <!-- Required for redirect flows (same as payment_xendit) -->
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+        <field name="image_128" type="base64"
+            file="payment_paymongo/static/description/paymongo.png"/>
+    </record>
+    </data>
+</odoo>

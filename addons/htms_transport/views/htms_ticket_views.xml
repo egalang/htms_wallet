@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_htms_ticket_form" model="ir.ui.view">
+        <field name="name">htms.ticket.form</field>
+        <field name="model">htms.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Ticket">
+                <sheet>
+                    <widget name="web_ribbon" title="Cancelled" bg_color="bg-danger" invisible="state != 'cancelled'"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                            <field name="state" widget="statusbar" statusbar_visible="booked,confirmed,checked_in,completed" clickable="False"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="trip_id" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="seat_number"/>
+                            <field name="order_id"/>
+                        </group>
+                        <group>
+                            <field name="origin" readonly="1"/>
+                            <field name="destination" readonly="1"/>
+                            <field name="departure_datetime" readonly="1"/>
+                            <field name="bus_name" readonly="1"/>
+                            <field name="price"/>
+                            <field name="qr_value" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_htms_ticket_list" model="ir.ui.view">
+        <field name="name">htms.ticket.list</field>
+        <field name="model">htms.ticket</field>
+        <field name="arch" type="xml">
+            <list string="Tickets">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="route_name"/>
+                <field name="departure_datetime"/>
+                <field name="seat_number"/>
+                <field name="price"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_htms_ticket_search" model="ir.ui.view">
+        <field name="name">htms.ticket.search</field>
+        <field name="model">htms.ticket</field>
+        <field name="arch" type="xml">
+            <search string="Search Tickets">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="trip_id"/>
+                <field name="state"/>
+                <filter name="active_booking" string="Confirmed" domain="[('state', 'in', ('confirmed', 'checked_in'))]"/>
+                <separator/>
+                <filter name="group_by_state" string="State" context="{'group_by': 'state'}"/>
+                <filter name="group_by_route" string="Route" context="{'group_by': 'route_name'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_htms_ticket" model="ir.actions.act_window">
+        <field name="name">Tickets</field>
+        <field name="res_model">htms.ticket</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_htms_ticket_search"/>
+    </record>
+
+    <menuitem
+        id="menu_htms_ticket"
+        name="Tickets"
+        parent="menu_htms_operations"
+        action="action_htms_ticket"
+        sequence="30"
+    />
+</odoo>

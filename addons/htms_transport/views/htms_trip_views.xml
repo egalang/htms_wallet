@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_htms_trip_form" model="ir.ui.view">
+        <field name="name">htms.trip.form</field>
+        <field name="model">htms.trip</field>
+        <field name="arch" type="xml">
+            <form string="Trip">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="route_id" options="{'no_create': True}"/>
+                            <field name="product_id"/>
+                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="departure_datetime"/>
+                            <field name="arrival_datetime"/>
+                            <field name="bus_name"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="total_seats"/>
+                            <field name="seat_layout"/>
+                            <field name="booked_seats" readonly="1"/>
+                            <field name="available_seats" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="duration_hours" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Tickets" name="tickets">
+                            <field
+                                name="ticket_ids"
+                                readonly="1"
+                            >
+                                <list string="Tickets">
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="seat_number"/>
+                                    <field name="price"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_htms_trip_list" model="ir.ui.view">
+        <field name="name">htms.trip.list</field>
+        <field name="model">htms.trip</field>
+        <field name="arch" type="xml">
+            <list string="Trips">
+                <field name="route_id"/>
+                <field name="departure_datetime"/>
+                <field name="arrival_datetime"/>
+                <field name="bus_name"/>
+                <field name="available_seats"/>
+                <field name="price"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_htms_trip_search" model="ir.ui.view">
+        <field name="name">htms.trip.search</field>
+        <field name="model">htms.trip</field>
+        <field name="arch" type="xml">
+            <search string="Search Trips">
+                <field name="route_id"/>
+                <field name="bus_name"/>
+                <field name="departure_datetime"/>
+                <field name="state"/>
+                <filter name="group_by_route" string="Route" context="{'group_by': 'route_id'}"/>
+                <filter name="group_by_state" string="State" context="{'group_by': 'state'}"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_htms_trip" model="ir.actions.act_window">
+        <field name="name">Trips</field>
+        <field name="res_model">htms.trip</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_htms_trip_search"/>
+    </record>
+
+    <menuitem
+        id="menu_htms_trip"
+        name="Trips"
+        parent="menu_htms_operations"
+        action="action_htms_trip"
+        sequence="20"
+    />
+</odoo>

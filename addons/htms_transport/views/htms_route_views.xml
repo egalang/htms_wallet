@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_htms_route_form" model="ir.ui.view">
+        <field name="name">htms.route.form</field>
+        <field name="model">htms.route</field>
+        <field name="arch" type="xml">
+            <form string="Route">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="origin" placeholder="Origin"/>
+                            <span class="ms-2 me-2">→</span>
+                            <field name="destination" placeholder="Destination"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="distance_km"/>
+                            <field name="duration_hours"/>
+                        </group>
+                        <group>
+                            <field name="base_price"/>
+                            <field name="currency_id"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Trips" name="trips">
+                            <field
+                                name="trip_ids"
+                                readonly="1"
+                            >
+                                <list string="Trips">
+                                    <field name="name"/>
+                                    <field name="bus_name"/>
+                                    <field name="available_seats"/>
+                                    <field name="price"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_htms_route_list" model="ir.ui.view">
+        <field name="name">htms.route.list</field>
+        <field name="model">htms.route</field>
+        <field name="arch" type="xml">
+            <list string="Routes">
+                <field name="origin"/>
+                <field name="destination"/>
+                <field name="distance_km"/>
+                <field name="duration_hours"/>
+                <field name="base_price"/>
+                <field name="trip_count" string="Trips"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_htms_route_search" model="ir.ui.view">
+        <field name="name">htms.route.search</field>
+        <field name="model">htms.route</field>
+        <field name="arch" type="xml">
+            <search string="Search Routes">
+                <field name="origin"/>
+                <field name="destination"/>
+                <filter name="active_routes" string="Active" domain="[('active', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_htms_route" model="ir.actions.act_window">
+        <field name="name">Routes</field>
+        <field name="res_model">htms.route</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_htms_route_search"/>
+        <field name="context">{'search_default_active_routes': 1}</field>
+    </record>
+
+    <menuitem
+        id="menu_htms_root"
+        name="HERMES Transport"
+        sequence="11"
+        web_icon="htms_transport,static/description/icon.png"
+    />
+    <menuitem
+        id="menu_htms_operations"
+        name="Operations"
+        parent="menu_htms_root"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_htms_route"
+        name="Routes"
+        parent="menu_htms_operations"
+        action="action_htms_route"
+        sequence="10"
+    />
+</odoo>

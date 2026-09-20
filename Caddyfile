@@ -1,0 +1,19 @@
+{
+	email {$ACME_EMAIL}
+}
+
+{$DOMAIN} {
+	encode zstd gzip
+
+	# Odoo websocket endpoint (gevent server on port 8072).
+	@websocket path /websocket /websocket/*
+	reverse_proxy @websocket odoo:8072
+
+	# Everything else: web UI, JSON-RPC, and payment webhooks.
+	reverse_proxy odoo:8069
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		-Server
+	}
+}

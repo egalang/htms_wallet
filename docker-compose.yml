@@ -1,0 +1,90 @@
+name: hermes-odoo
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      TZ: ${TZ:-Asia/Manila}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    networks:
+      - hermes
+    # No published ports: the database is reachable only on the compose network.
+
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hermes-odoo:19.0
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      ODOO_ADMIN_PASSWD: ${ODOO_ADMIN_PASSWD}
+      ODOO_WORKERS: ${ODOO_WORKERS:-4}
+      ODOO_MAX_CRON_THREADS: ${ODOO_MAX_CRON_THREADS:-2}
+      ODOO_LOG_LEVEL: ${ODOO_LOG_LEVEL:-info}
+      HERMES_ADMIN_LOGIN: ${HERMES_ADMIN_LOGIN:-admin}
+      HERMES_ADMIN_PASSWORD: ${HERMES_ADMIN_PASSWORD}
+      ODOO_BASE_URL: ${ODOO_BASE_URL}
+      PAYMONGO_SECRET_KEY: ${PAYMONGO_SECRET_KEY:-}
+      PAYMONGO_WEBHOOK_SECRET: ${PAYMONGO_WEBHOOK_SECRET:-}
+      PAYMONGO_STATE: ${PAYMONGO_STATE:-test}
+      TZ: ${TZ:-Asia/Manila}
+    volumes:
+      - odoo-data:/var/lib/odoo
+    expose:
+      - "8069"
+      - "8072"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8069/web/login"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 180s
+    networks:
+      - hermes
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      - odoo
+    environment:
+      DOMAIN: ${DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - hermes
+
+volumes:
+  db-data:
+  odoo-data:
+  caddy-data:
+  caddy-config:
+
+networks:
+  hermes:
+    driver: bridge
